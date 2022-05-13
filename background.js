@@ -1,5 +1,18 @@
+function isNewRedditOnlyLink(url) {
+    return url.contains("reddit.com/gallery")
+        || url.contains("reddit.com/poll");
+}
+
 function redirectToOldReddit(requestDetails) {
-    let old_reddit_url = requestDetails.url
+    const url = requestDetails.url;
+    
+    if (isNewRedditOnlyLink(url)) {
+        return {
+            redirectUrl: url
+        };
+    }
+
+    let old_reddit_url = url
         .replace("://www.reddit.com", "://old.reddit.com")
         .replace("://reddit.com", "://old.reddit.com"); 
 
