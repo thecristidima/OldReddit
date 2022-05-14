@@ -1,11 +1,11 @@
 function isNewRedditOnlyLink(url) {
-    return url.contains("reddit.com/gallery")
-        || url.contains("reddit.com/poll");
+    return url.includes("reddit.com/gallery")
+        || url.includes("reddit.com/poll");
 }
 
 function redirectToOldReddit(requestDetails) {
     const url = requestDetails.url;
-    
+
     if (isNewRedditOnlyLink(url)) {
         return {
             redirectUrl: url
